@@ -1,0 +1,150 @@
+
+
+----------------------------------------
+Pitch to Frequency
+
+- Subjective perception of frequency
+
+- F(p) = [2^((p-69)/12)] * 440
+
+- F(p+1) / F(p) = 2^(1/12) = 1.059
+
+- Octave divided in 1200 cents
+
+- 100 cents in a semitone
+
+- Noticeable pitch difference: 10-25 cents
+----------------------------------------
+
+Sound Power
+- rate at which energy is transferred
+- energy per unit of time emitted by a
+  sound source in a directions
+- measured in watt(W)
+
+Sound Intensity
+- sound power per unit area
+- Measured in W/m^2
+
+Threshold of hearing
+- TOH = 10^(-12) W/m^2
+
+Threshold of pain
+- TOP = 10 W/m^2
+
+Intensity Level
+- Logarithmic scale
+- Measured in decibels(dB)
+- Ratio between two intensity values
+- Use an intensity of reference
+- dB(I) = 10 * log(I / I(TOH))
+
+Loudness
+- Subjective perception of sound intensity
+- Depends on duration / frequency of a sound
+- Depends on age
+- Measured in phons
+
+Timbre
+- Colour of sound
+- Diff between two sounds with same intensity,
+  frequency, duration
+- Described with words like: bright, dark, dull,
+  harsh, warm
+- Timbre is multidimensional
+- Distribution of energy across partials
+- Sound envelope - Attack-Decay-Sustain-Release(ADSR) Model
+- Harmonic content - Complex sound - * Superposition of sinusoids
+                                     * A partial is a sinusoid used to
+                                       describe a sound
+                                     * The lowest partial is called
+                                       fundamental frequency
+                                     * A harmonic partial is a frequency
+                                       that's a multiple of the fundamental
+                                       frequency
+                                     * Inharmonicity indicates a deviation
+                                       from a harmonic partial
+- Frequency modulation - * AKA vibrato
+                         * Periodic variation in frequency
+                         * In music, used for expressive purposes
+- Amplitude modulation - * AKA tremolo
+                         * Periodic variation in amplitude
+                         * In music, used for expressive purposes
+
+------------------------------------------------------------------------------
+
+Analog Signal
+- Continuous values for time
+- Continuous values for amplitude
+
+Digital Signal
+- Sequence of discrete values
+- Data points can only take on a finite number of values
+
+Analog to digital conversion(ADC)
+- Sampling
+- Quantization
+
+Sampling
+- Sampling Period(T)
+- Locating samples(t(n) = n * T)
+- Sampling Rate(Sr = 1 / T)
+- Why sampling rate = 44100hz for CD ? - * Nyquist frequency(f(N) = Sr / 2)
+                                         * 44100 / 2 = 22050 (for CD)
+
+Quantization
+- Resolution = num. of bits
+- Bit depth
+- CD resolution = 16 bits
+
+Dynamic range
+- Difference between largest / smallest signal a
+  system can record
+
+Signal-to-quantization-noise ratio
+- Relationship between max signal strength and
+  quantization error
+- Correlates with dynamic range
+- SQNR(dB) = 6.02 * Q(bit depth)
+
+--------------------------------------------------------------------------------
+
+Signal Domain
+- Time domain
+- Frequency domain
+- Time-frequency representation
+
+--------------------------------------------------------------------------------
+
+Frames
+- Perceivable audio chunk
+- Power of 2 num. samples
+- Typical values: 256 - 8192
+
+From time to frequency domain
+Spectral leakage
+- Processed signal isn't an integer number of periods
+- Endpoints are discontinuous
+- Discontinuities appear as high-frequency components not
+  present in the original signal
+- Solve - Windowing - * Apply windowing function(ex: Hann window) to each frame
+                      * Eliminates samples at both ends of a frame
+                      * Generates a periodic signal
+                      * ! Problem : lose signals - Solve - * Overlapping frames
+
+Time-domain features
+- Amplitude envelope(AE) - * Max amplitude value of all samples in a frame
+                           * Gives rough idea of loudness
+                           * Sensitive to outliers
+                           * Onset detection, music genre classification
+
+- Root-mean-square energy(RMS) - * RMS of all samples in a frame
+                                 * Indicator of loudness
+                                 * Less sensitive to outliers than AE
+                                 * Audio segmentation, music genre classification
+
+- Zero-crossing rate(ZCR) - * Number of times a signal crosses the horizontal axis
+                            * Recognition of percussive vs pitched sounds
+                            * Monophonic pitch estimation
+                            * Voice/unvoiced decision for speech signals
+
